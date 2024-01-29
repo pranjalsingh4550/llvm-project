@@ -2851,6 +2851,7 @@ void AssemblyWriter::printModule(const Module *M) {
       // require a comment char before it).
       M->getModuleIdentifier().find('\n') == std::string::npos)
     Out << "; ModuleID = '" << M->getModuleIdentifier() << "'\n";
+  Out << "This line was inserted by Pranjal in llvm-project/llvm/lib/IR/AsmWriter.cpp inside PrintModule()\n" ;  
 
   if (!M->getSourceFileName().empty()) {
     Out << "source_filename = \"";
@@ -3984,8 +3985,10 @@ void AssemblyWriter::printFunction(const Function *F) {
 
     Out << " {";
     // Output all of the function's basic blocks.
-    for (const BasicBlock &BB : *F)
-      printBasicBlock(&BB);
+    for (const BasicBlock &BB : *F) {
+        Out << "A basic block begins here. Inserted by Pranjal inside AssemblyWriter::printFunction ()\n" ;
+        printBasicBlock(&BB);
+    }
 
     // Output the function's use-lists.
     printUseLists(F);
